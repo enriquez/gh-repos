@@ -1,6 +1,6 @@
 # Github Repos
 
-List of Github Repos
+List of Github Repos using https://developer.github.com/v3/repos/#list-user-repositories
 
 ## Getting Started
 
