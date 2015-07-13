@@ -26,13 +26,11 @@ require('dotenv').load({
 var paths      = {
   sass: ['./app/stylesheets/**/*.scss'],
   views: ['./app/*.slim'],
-  layouts: ['./app/layouts/*.slim'],
   coffee: ['./app/javascripts/**/*.coffee', './app/javascripts/**/*.cjsx'],
   libs: ['./app/javascripts/**/*.js'],
   css: [], //'./app/bower_components/angucomplete/angucomplete.css'
-  fonts: ['./app/bower_components/font-awesome/fonts/**/*'],
+  fonts: ['./bower_components/font-awesome/fonts/**/*'],
   react: ['./app/javascripts/app.cjsx'],
-  theme: ['./theme/**/*']
 };
 
 gulp.task('default', ['connect']);
@@ -40,23 +38,13 @@ gulp.task('default', ['connect']);
 gulp.task('fonts', function() { 
     gulp.src(paths.fonts) 
       .pipe(gulp.dest('./www/assets'))
-      .pipe(gulp.dest('./theme/assets')); 
 });
 
-gulp.task('views', ['layouts'], function(done) {
+gulp.task('views', function(done) {
   gulp.src(paths.views)
     .pipe(plumber())
     .pipe(slim({ pretty: true }))
     .pipe(gulp.dest('./www/'))
-    .on('end', done);
-});
-
-gulp.task('layouts', function(done) {
-  gulp.src(paths.layouts)
-    .pipe(plumber())
-    .pipe(slim({ pretty: true }))
-    .pipe(rename({ extname: '.liquid' }))
-    .pipe(gulp.dest('./theme/layout'))
     .on('end', done);
 });
 
@@ -75,7 +63,6 @@ gulp.task('coffee', ['libs'], function(done) {
   if(process.env.OPTIMIZE == 1) {
     t = t.pipe(uglify())
       .pipe(rename({ extname: '.min.js' }))
-      .pipe(gulp.dest('./theme/assets'))
   }
 
   t.on('end', done)
@@ -95,7 +82,6 @@ gulp.task('libs', function(done) {
       .pipe(rename({ basename: 'builder-libs', extname: '.js' }))
       .pipe(uglify())
       .pipe(rename({ extname: '.min.js' }))
-      .pipe(gulp.dest('./theme/assets'))
       .on('end', done)
   } else {
     t.on('end', done)
@@ -126,7 +112,6 @@ gulp.task('stylesheets', ['sass'], function(done) {
   if(process.env.OPTIMIZE == 1) {
     t = t.pipe(minifyCss({ keepSpecialComments: 0 }))
       .pipe(rename({ extname: '.min.css' }))
-      .pipe(gulp.dest('./theme/assets'))
   }
 
   t.on('end', done);
@@ -139,7 +124,6 @@ gulp.task('connect', ['watch'], function() {
 gulp.task('watch', ['stylesheets', 'coffee', 'fonts', 'views'], function() {
   gulp.watch(paths.sass, ['stylesheets']);
   gulp.watch(paths.views, ['views']);
-  gulp.watch(paths.layouts, ['views']);
   gulp.watch(paths.coffee, ['coffee']);
   gulp.watch(paths.libs, ['coffee']);
 });
