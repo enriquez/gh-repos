@@ -1,0 +1,8 @@
+{
+  "name": "gh-repos",
+  "dependencies": {
+    "jquery": "*",
+    "bootstrap-sass": "*",
+    "font-awesome": "*"
+  }
+}

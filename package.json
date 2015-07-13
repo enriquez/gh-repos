@@ -1,0 +1,37 @@
+{
+  "name": "gh-repos",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "gulp": "*",
+    "gulp-sass": "*",
+    "gulp-concat": "*",
+    "gulp-minify-css": "*",
+    "gulp-rename": "*",
+    "gulp-coffee": "*",
+    "gulp-plumber": "*",
+    "gulp-slim": "*",
+    "gulp-image": "0.5.7",
+    "gulp-include": "*",
+    "gulp-uglify": "*",
+    "gulp-browserify": "*",
+    "gulp-connect": "*",
+    "gulp-preprocess": "*",
+    "gulp-shopify-upload": "*",
+    "coffee-reactify": "*",
+    "react": "*",
+    "flux": "*",
+    "validatorjs": "*",
+    "yargs": "*",
+    "dotenv": "*",
+    "envify": "*"
+    
+  },
+  "devDependencies": {
+    "bower": "*",
+    "gulp-util": "*",
+    "shelljs": "*"
+  }
+}
+
+
